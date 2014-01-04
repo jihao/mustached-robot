@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <title>休假安排</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="css/datepicker.css">
+    <link rel="stylesheet" href="css/site.css">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script data-main="js/app" src="js/lib/require.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Static navbar -->
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">护士排班系统</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="employee.html">人员管理</a></li>
+            <li class="active"><a href="vacation.html">休假安排</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">排班 <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="schedule_a.html">自动排班</a></li>
+                <li><a href="schedule_m.html">手动排班</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">高级功能</li>
+                <li><a href="#">混合模式</a></li>
+              </ul>
+            </li>
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">高级设置 <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">每日班次安排</a></li>
+                <li><a href="#">高级可配置项</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            
+            <li class="active"><a href="./">管理员</a></li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="row">
+        <div class="col-md-3">
+          <div id="my-bootstrap-datepicker"></div>
+        </div>
+        <div class="col-md-9">
+
+          <div class="page-header">
+              
+            <h3>休假安排</h3>
+            <small>第二步：设置人员休假信息 (可选步骤) </small>
+          </div> <!-- /page-header -->
+
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">选择科室</label>
+              <div class="col-sm-10">
+                <select class="form-control">
+                  <option>内科</option>
+                  <option>外科</option>
+                  <option>五官科</option>
+                  <option>消化科</option>
+                  <option>护理科</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">选择人员</label>
+              <div class="col-sm-10">
+                <select class="form-control">
+                  <option>张三</option>
+                  <option>李四</option>
+                  <option>王五</option>
+                  <option>赵甲</option>
+                  <option>钱乙</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-2 control-label">休假日期</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputEmail" placeholder="日期格式(2014-01-08,2014-02-01,2014-02-03)">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="inputPassword3" class="col-sm-2 control-label">备注</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputName" placeholder="备注信息">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">保存</button>
+              </div>
+            </div>
+          </form>
+
+          
+        </div><!-- /col-md-9 -->
+      </div><!-- /row -->
+      <div class="row">
+        <div class="col-md-9 col-md-offset-3">
+        <table class="table table-hover">
+         <thead>
+          <tr>
+            <th>#</th>
+            <th>姓名</th>
+            <th>休假日期</th>
+            <th>科室</th>
+            <th>备注</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>张三</td>
+            <td>2014-01-08,2014-02-01,2014-02-03</td>
+            <td>内科</td>
+            <td>三天啊</td>
+            <td>
+              <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+              <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>李四</td>
+            <td>2014-01-08</td>
+            <td>内科</td>
+            <td>好同志，就一天</td>
+            <td>
+              <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+              <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+            </td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>王五</td>
+            <td>2014-01-08,2014-02-01,2014-02-03</td>
+            <td>内科</td>
+            <td>1月-2月 进修</td>
+            <td>
+              <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-pencil"></span></button>
+              <button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-remove"></span></button>
+            </td>
+          </tr>
+        </tbody>
+        </table>
+        </div>
+
+      </div>
+      
+
+
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
