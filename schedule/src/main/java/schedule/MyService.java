@@ -10,11 +10,19 @@ public class MyService {
 
     @Autowired
     private ConnectionSettings connection; 
+    
+    @Autowired
+    private NurseRosteringSettings nurseRosteringSettings;
 
     //...
 
     @PostConstruct
     public void openConnection() {
         System.out.println(connection);
+    }
+    
+    @PostConstruct
+    public void getNurseRosteringSettings() {
+    	System.out.println(nurseRosteringSettings);
     }
 }

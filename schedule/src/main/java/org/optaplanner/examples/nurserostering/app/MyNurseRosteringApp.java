@@ -37,30 +37,30 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class MyNurseRosteringApp {
-
+	protected static final Logger logger = LoggerFactory.getLogger(MyNurseRosteringApp.class);
 	public static final String SOLVER_CONFIG = "/org/optaplanner/examples/nurserostering/solver/nurseRosteringSolverConfig.xml";
 
 	public static void main(String[] args) {
 		final MyNurseRosteringApp app = new MyNurseRosteringApp();
-		app.solutionBusiness
+		app.getSolutionBusiness()
 				.importSolution(new File(
 						"C:/design_env/optaplanner-distribution-6.0.0.Final/examples/sources/data/nurserostering/import/toy1_mod.xml"));
 
 		ExecutorService executor = Executors.newFixedThreadPool(1);
-		final Solution planningProblem = app.solutionBusiness.getSolution(); // In event thread
+		final Solution planningProblem = app.getSolutionBusiness().getSolution(); // In event thread
 
 		executor.submit(new Runnable() {
 			@Override
 			public void run() {
 				Solution bestSolution = null;
 				try {
-					bestSolution = app.solutionBusiness.solve(planningProblem); // Not in event thread
+					bestSolution = app.getSolutionBusiness().solve(planningProblem); // Not in event thread
 				} catch (final Throwable e) {
 					// Otherwise the newFixedThreadPool will eat the exception...
 					logger.error("Solving failed.", e);
 					bestSolution = null;
 				}
-				app.solutionBusiness.setSolution(bestSolution); // In event thread
+				app.getSolutionBusiness().setSolution(bestSolution); // In event thread
 			}
 
 		});
@@ -72,7 +72,7 @@ public class MyNurseRosteringApp {
 			e.printStackTrace();
 		}
 		System.out.println("get 1st best result");
-		app.solutionBusiness
+		app.getSolutionBusiness()
 				.exportSolution(new File(
 						"C:/design_env/optaplanner-distribution-6.0.0.Final/examples/sources/data/nurserostering/solved/toy1_mod_sol.xml"));
 
@@ -82,7 +82,7 @@ public class MyNurseRosteringApp {
 			e.printStackTrace();
 		}
 		System.out.println("get 2nd best result");
-		app.solutionBusiness
+		app.getSolutionBusiness()
 				.exportSolution(new File(
 						"C:/design_env/optaplanner-distribution-6.0.0.Final/examples/sources/data/nurserostering/solved/toy1_mod_sol.xml"));
 
@@ -93,9 +93,11 @@ public class MyNurseRosteringApp {
 			e.printStackTrace();
 		}
 		System.out.println("get 3rd best result");
-		app.solutionBusiness
+		app.getSolutionBusiness()
 				.exportSolution(new File(
 						"C:/design_env/optaplanner-distribution-6.0.0.Final/examples/sources/data/nurserostering/solved/toy1_mod_sol.xml"));
+		
+		app.getSolutionBusiness().terminateSolvingEarly();
 
 	}
 	public void registerForBestSolutionChanges() {
@@ -112,7 +114,7 @@ public class MyNurseRosteringApp {
                     Executors.newFixedThreadPool(1).submit(new Runnable() {
                         public void run() {
                             // TODO by the time we process this event, a newer bestSolution might already be queued
-                            solutionBusiness.setSolution(latestBestSolution);
+                            getSolutionBusiness().setSolution(latestBestSolution);
                             System.out.println("bestSolutionChanged");
                         }
                     });
@@ -121,14 +123,13 @@ public class MyNurseRosteringApp {
         });
     }
 	public MyNurseRosteringApp() {
-		solutionBusiness = createSolutionBusiness();
+		this.solutionBusiness = createSolutionBusiness();
 		registerForBestSolutionChanges();
 	}
 
-	protected static final Logger logger = LoggerFactory
-			.getLogger(MyNurseRosteringApp.class);
+	
 
-	protected SolutionBusiness solutionBusiness;
+	private SolutionBusiness solutionBusiness;
 	protected Solver solver;
 	public SolutionBusiness createSolutionBusiness() {
 		SolutionBusiness solutionBusiness = new SolutionBusiness();
@@ -158,6 +159,9 @@ public class MyNurseRosteringApp {
 
 	protected AbstractSolutionExporter createSolutionExporter() {
 		return new NurseRosteringExporter();
+	}
+	public SolutionBusiness getSolutionBusiness() {
+		return solutionBusiness;
 	}
 
 }

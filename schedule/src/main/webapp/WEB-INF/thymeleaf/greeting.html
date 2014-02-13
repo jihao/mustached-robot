@@ -6,5 +6,27 @@
 </head>
 <body>
     <p th:text="'Nice, Cool, ' + ${name} + '!'" />
+    
+    <table>
+  <tr>
+    <th>NAME</th>
+    <th>PRICE</th>
+    <th>IN STOCK</th>
+  </tr>
+  <tr th:each="map,iterStat : ${assignmentMap}" th:class="${iterStat.odd}? 'odd'">
+    <td th:text="${map.key}">id</td>
+    <td th:each="assignment : ${map.value}">
+        <a th:if="${assignment.value != null}" class="btn btn-default"><span th:text="${assignment.value.shiftType}"></span></a>
+        <span th:if="${assignment.value != null}" th:text="${#calendars.format(assignment.value.date,'yyyy-MM-dd')}"></span>
+        <span th:text="${assignment.key}">key</span>
+    </td>
+    <td th:text="'yes'">yes</td>
+  </tr>
+</table>
+
+
+    <pre th:text="${solved}" >
+    
+    </pre>
 </body>
 </html>
