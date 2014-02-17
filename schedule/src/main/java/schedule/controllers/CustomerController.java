@@ -1,4 +1,4 @@
-package schedule;
+package schedule.controllers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,8 +19,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import schedule.Application;
 import schedule.domains.Employee;
-import schedule.repository.CustomerRepository;
+import schedule.repository.EmployeeRepository;
 
 @Controller
 @RequestMapping("/employee")
@@ -28,7 +29,7 @@ public class CustomerController {
 	protected static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
 	@Autowired
-	private CustomerRepository repository;
+	private EmployeeRepository repository;
 
 	@RequestMapping({"", "/", "list"}) // default
 	public String index(final Employee employee) {
@@ -61,9 +62,11 @@ public class CustomerController {
 	}
 
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.POST)
-	public String delete(@PathVariable Long id) {
+	public String delete(@PathVariable Long id, Model model) {
 		logger.info("/employee/delete");
 		repository.delete(id);
+		model.asMap().clear();
+		
 		return "redirect:/employee";
 	}
 	
@@ -77,7 +80,7 @@ public class CustomerController {
 
 	public static void main(String... args) throws Exception {
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(Application.class);
-        CustomerRepository repository = context.getBean(CustomerRepository.class);
+        EmployeeRepository repository = context.getBean(EmployeeRepository.class);
 
         // save a couple of customers
         repository.save(new Employee("Jack", "Bauer","position","office","..."));

@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import schedule.domains.Employee;
 
-public interface  CustomerRepository extends CrudRepository<Employee, Long> {
+public interface  EmployeeRepository extends CrudRepository<Employee, Long> {
 	List<Employee> findByName(String name);
 }
