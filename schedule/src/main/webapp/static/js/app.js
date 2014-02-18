@@ -3,7 +3,7 @@
 // Configure loading modules from the lib directory,
 // except 'app' ones, 
 requirejs.config({
-    "baseUrl": "js/lib",
+    "baseUrl": "static/js/lib",
     "paths": {
       "app": "../app",
       "jquery": "jquery-1.10.2",
