@@ -59,7 +59,13 @@ public class GreetingController {
 			@RequestParam(value = "name", required = false, defaultValue = "World") String name) {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
-
+	
+	@RequestMapping("/index")
+	public String index() {
+		
+		return "index";
+	}
+	
 	@RequestMapping("/greeting3")
 	public String greeting(
 			@RequestParam(value = "name", required = false, defaultValue = "123") String name,

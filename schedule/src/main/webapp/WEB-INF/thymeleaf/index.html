@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!--/*/ <th:block th:include="templates/header :: header"></th:block> /*/-->
+    <title>首页</title>
+  </head>
+
+  <body>
+    <!--/*/ <th:block th:replace="templates/header :: navbar"></th:block> /*/-->
+
+    <div class="container">
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="row">
+        <div class="col-md-3">
+          <div id="my-bootstrap-datepicker"></div>
+        </div>
+        <div class="col-md-9">
+          <div class="page-header">
+            <h3>欢迎管理员</h3>
+            <small>第一步：点击人员管理</small>
+            <small>第二步：点击休假安排</small>
+            <small>第三步：点击排班</small><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><small>高级功能开发中...</small>
+            
+          </div> <!-- /page-header -->
+          
+          <div>
+          <h5>1. 应用部署之前需要得到作者发布的data目录</h5>
+          <h5>2. 应用部署之后可以修改  APP_ROOT/WEB-INF/classes/application.properties</h5>
+          <pre>
+nurserostering.dataDir = C:\\design_env\\github\\mustached-robot\\schedule\\data\\nurserostering
+          
+spring.datasource.url = jdbc:h2:file:C:\\design_env\\github\\mustached-robot\\schedule\\data\\mustached-robot\\db</pre>
+          </div>
+          
+        </div>
+       </div> <!-- /row -->
+
+
+
+    </div> <!-- /container -->
+
+  </body>
+</html>
